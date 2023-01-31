@@ -50,8 +50,12 @@ class ServerSocket {
              * The first arg of the callback is the payload
              */
             socket.on( 'send-message', ( payload ) => {
-                
-                console.log('Message from the "client" received: ', payload);
+
+                // console.log('Message from the "client" received: ', payload);
+
+                //Sending a message to all the connected clients
+                this.io.emit( 'send-message', payload );
+
             });
         });
     }

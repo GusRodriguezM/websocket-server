@@ -28,6 +28,12 @@ socket.on( 'disconnect', () => {
     lblOffline.style.display = '';
 });
 
+//Listening the message from the server
+//Also we can use the payload sent by the server
+socket.on( 'send-message', ( payload ) => {
+    console.log('Listening the message from the server: ', payload);
+});
+
 //Adding an event listener to the button
 btnEnviar.addEventListener( 'click', () => {
     const message = txtMessage.value;
