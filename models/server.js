@@ -48,13 +48,17 @@ class ServerSocket {
             /**
              * This listens when a client emits a message and the callback is the things we want to do when the client emits the message
              * The first arg of the callback is the payload
+             * Th second arg is a callback where we can send data to the client
              */
-            socket.on( 'send-message', ( payload ) => {
+            socket.on( 'send-message', ( payload, callback ) => {
 
                 // console.log('Message from the "client" received: ', payload);
 
                 //Sending a message to all the connected clients
-                this.io.emit( 'send-message', payload );
+                // this.io.emit( 'send-message', payload );
+
+                const id = '123ABC';
+                callback( id );
 
             });
         });

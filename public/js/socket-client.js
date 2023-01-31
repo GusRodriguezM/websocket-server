@@ -47,6 +47,9 @@ btnEnviar.addEventListener( 'click', () => {
     
     //.emit helps to send (emit) an event
     //sending a message to the server
-    socket.emit( 'send-message', payload );
+    //The third arg is a callback where we get the data sent by the server
+    socket.emit( 'send-message', payload, ( id ) => {
+        console.log('From the server: ', id);
+    });
 
 });
