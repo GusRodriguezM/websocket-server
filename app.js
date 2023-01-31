@@ -1,8 +1,8 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
-import Server from "./models/server.js";
+import ServerSocket from "./models/server.js";
 
 //Instance of the class server
-const server = new Server();
+const server = new ServerSocket();
 
 server.listen();

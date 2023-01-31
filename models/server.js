@@ -1,11 +1,15 @@
 import express from 'express';
 import cors from 'cors';
+import { createServer } from 'node:http';
+import { Server } from 'socket.io';
 
-class Server {
+class ServerSocket {
 
     constructor() {
         this.app = express();
         this.port = process.env.PORT;
+        this.server = createServer( this.app );
+        this.io = new Server( this.server );
 
         this.paths = {}
 
@@ -20,9 +24,6 @@ class Server {
         //CORS
         this.app.use( cors() );
 
-        //Reading and parsing the body
-        this.app.use( express.json() );
-
         //Public folder
         this.app.use( express.static('public') );
 
@@ -33,11 +34,11 @@ class Server {
 
     //Port where the app will run
     listen() {
-        this.app.listen(this.port, () => {
+        this.server.listen(this.port, () => {
             console.log(`The server is up and listening on port, ${this.port}`);
         });
     }
 
 }
 
-export default Server;
+export default ServerSocket;
