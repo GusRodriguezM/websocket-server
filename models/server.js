@@ -18,6 +18,9 @@ class ServerSocket {
 
         //App routes
         this.routes();
+
+        //Sockets events
+        this.sockets();
     }
 
     middlewares() {
@@ -31,6 +34,18 @@ class ServerSocket {
 
     //App routes
     routes() {}
+
+    //Sockets
+    sockets() {
+        //this.io references the server of the sockets
+        this.io.on( 'connection', socket => {
+            console.log('Client connected...', socket.id);
+
+            socket.on( 'disconnect', () => {
+                console.log('Client disconnected...', socket.id);
+            });
+        });
+    }
 
     //Port where the app will run
     listen() {
