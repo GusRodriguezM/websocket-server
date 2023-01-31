@@ -44,6 +44,15 @@ class ServerSocket {
             socket.on( 'disconnect', () => {
                 console.log('Client disconnected...', socket.id);
             });
+
+            /**
+             * This listens when a client emits a message and the callback is the things we want to do when the client emits the message
+             * The first arg of the callback is the payload
+             */
+            socket.on( 'send-message', ( payload ) => {
+                
+                console.log('Message from the "client" received: ', payload);
+            });
         });
     }
 
